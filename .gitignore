@@ -9,3 +9,5 @@ erl_crash.dump
 /config/*.secret.exs
 .elixir_ls/
 .vscode/
+# Ignore package tarball (built via "mix hex.build").
+forza_assignment-*.tar
