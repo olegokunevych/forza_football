@@ -40,6 +40,8 @@ defmodule ForzaAssignment.ConsumerMatchbeam do
     IO.puts("Consumer Matchbeam events dispatching:")
     IO.inspect(events)
 
+    ForzaAssignment.Providers.Matchbeam.Manager.call
+
     {:noreply, [], state}
   end
   def handle_events(events, _from, state) do
