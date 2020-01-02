@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: mix run --no-halt 
+    volumes:
+      - .:/home/app
+    ports:
+      - "4000:4000"
+  postgres:
+    image: postgres:11.1
+    volumes:
+      - .psqlrc:/root/.psqlrc:ro
+      - postgres:/var/lib/postgresql/data
+      - ./log:/root/log:cached
+    environment:
+      - PSQL_HISTFILE=/root/log/.psql_history
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: mix test
+    environment:
+      MIX_ENV: test
+      PORT: 4001
+    volumes:
+      - .:/home/app
+
+volumes:
+  postgres:
