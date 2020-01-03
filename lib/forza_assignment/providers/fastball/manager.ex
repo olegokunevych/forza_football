@@ -1,7 +1,7 @@
-defmodule ForzaAssignment.Providers.Matchbeam.Manager do
+defmodule ForzaAssignment.Providers.FastBall.Manager do
   alias ForzaAssignment.Providers.Common, as: Common
-  @url "http://forzaassignment.forzafootball.com:8080/feed/matchbeam"
-  @provider_title "Matchbeam"
+  @url "http://forzaassignment.forzafootball.com:8080/feed/fastball"
+  @provider_title "FastBall"
 
   def call do
     ForzaAssignment.Utils.Fetch.call(@url)
@@ -12,9 +12,8 @@ defmodule ForzaAssignment.Providers.Matchbeam.Manager do
   end
 
   defp prepare_match_object(match) do
-    [home_team_title, away_team_title] = teams(match)
-    {:ok, home_team} = Common.find_or_create_team(home_team_title)
-    {:ok, away_team} = Common.find_or_create_team(away_team_title)
+    {:ok, home_team} = Common.find_or_create_team(match["home_team"])
+    {:ok, away_team} = Common.find_or_create_team(match["away_team"])
     kickoff_at = Common.kickoff_at(match)
     created_at = Common.created_at(match)
 
@@ -25,9 +24,5 @@ defmodule ForzaAssignment.Providers.Matchbeam.Manager do
       kickoff_at: kickoff_at,
       created_at: created_at
     }
-  end
-
-  defp teams(match) do
-    String.split(match["teams"], " - ")
   end
 end
