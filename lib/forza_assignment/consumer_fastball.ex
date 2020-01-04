@@ -40,6 +40,8 @@ defmodule ForzaAssignment.ConsumerFastBall do
     IO.puts("Consumer FastBall events dispatching:")
     IO.inspect(events)
 
+    ForzaAssignment.Providers.FastBall.Manager.call
+
     {:noreply, [], state}
   end
   def handle_events(events, _from, state) do

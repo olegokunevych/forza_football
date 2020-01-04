@@ -4,18 +4,18 @@ defmodule ForzaAssignment.Providers.Common do
     provider_id
   end
 
+  # function implemented to solve race condition problem
   def find_or_create_team(title) do
-    case ForzaAssignment.Repo.transaction(fn repo ->
-      case repo.get_by(ForzaAssignment.Team, title: title) do
-        nil ->
-          %ForzaAssignment.Team{title: title}
-          |> ForzaAssignment.Team.changeset()
-          |> repo.insert
-        team -> {:ok, team}
-      end
-    end) do
-      {:ok, result} -> result
-      {:error, _} -> find_or_create_team(title)
+    case ForzaAssignment.Repo.get_by(ForzaAssignment.Team, title: title) do
+      nil ->
+        team = %ForzaAssignment.Team{title: title}
+        |> ForzaAssignment.Team.changeset()
+        |> ForzaAssignment.Repo.insert
+        case team do
+          {:ok, persisted_team} -> {:ok, persisted_team}
+          {:error, _} -> find_or_create_team(title)
+        end
+      team -> {:ok, team}
     end
   end
 

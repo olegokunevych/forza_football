@@ -11,10 +11,11 @@ defmodule ForzaAssignment.Application do
       ForzaAssignment.Splitter,
       ForzaAssignment.ConsumerMatchbeam,
       ForzaAssignment.ConsumerFastBall,
-
-      # Starts a worker by calling: ForzaAssignment.Worker.start_link(arg)
-      # {ForzaAssignment.Worker, arg}
+      {ForzaAssignment.Repo, []}
     ]
+
+    :ets.new(:last_checked_at, [:set, :named_table, :public, read_concurrency: true,
+                                                 write_concurrency: true])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

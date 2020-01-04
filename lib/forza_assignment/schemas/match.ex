@@ -3,9 +3,8 @@ defmodule ForzaAssignment.Match do
 
   schema "matches" do
     field :provider_id, :integer
-    # field :home_team_id, :integer
-    belongs_to(:home_team, Team, foreign_key: :home_team_id)
-    field :away_team_id, :integer
+    belongs_to(:home_team, ForzaAssignment.Team, foreign_key: :home_team_id)
+    belongs_to(:away_team, ForzaAssignment.Team, foreign_key: :away_team_id)
     field :kickoff_at, :utc_datetime
     field :created_at, :utc_datetime
   end
