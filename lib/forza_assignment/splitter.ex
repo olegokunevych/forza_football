@@ -22,7 +22,6 @@ defmodule ForzaAssignment.Splitter do
     }
   end
   def handle_events(events, _from, state) do
-    # IO.inspect Splitter: state
     {:noreply, events, state}
   end
 end

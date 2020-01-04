@@ -42,6 +42,8 @@ defmodule ForzaAssignment.ConsumerMatchbeam do
 
     ForzaAssignment.Providers.Matchbeam.Manager.call
 
+    :timer.sleep(30000)
+
     {:noreply, [], state}
   end
   def handle_events(events, _from, state) do

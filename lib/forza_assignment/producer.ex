@@ -16,8 +16,6 @@ defmodule ForzaAssignment.Producer do
   def handle_demand(incoming_demand, %{demand: demand}) do
     events = []
 
-    :timer.sleep(30000)
-
     dispatched = dispatch_events(%{events: events, demand: demand + incoming_demand })
 
     IO.puts("Producer events to dispatch")
