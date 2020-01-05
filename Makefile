@@ -10,3 +10,6 @@ setup:
 
 start:
 	docker-compose up app
+
+tests:
+	docker-compose up test

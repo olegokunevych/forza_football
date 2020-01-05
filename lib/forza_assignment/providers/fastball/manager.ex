@@ -3,9 +3,10 @@ defmodule ForzaAssignment.Providers.FastBall.Manager do
   @url "http://forzaassignment.forzafootball.com:8080/feed/fastball"
   @provider_title "FastBall"
 
-  def call do
+  def call(url \\ @url) do
     provider_id = Common.provider_id_by_title(@provider_title)
-    ForzaAssignment.Utils.Fetch.call(@url, query_params())
+    {_, matches} = ForzaAssignment.Utils.Fetch.call(url, query_params())
+    matches
     |> Flow.from_enumerable()
     |> Flow.partition()
     |> Flow.each(fn match -> match |> prepare_match_object(provider_id) |> Common.persist end)

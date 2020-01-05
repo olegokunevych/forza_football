@@ -33,6 +33,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: mix test
+    depends_on:
+      - postgres
     environment:
       MIX_ENV: test
       PORT: 4001

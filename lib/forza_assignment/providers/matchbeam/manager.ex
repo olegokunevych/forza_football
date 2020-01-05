@@ -3,9 +3,10 @@ defmodule ForzaAssignment.Providers.Matchbeam.Manager do
   @url "http://forzaassignment.forzafootball.com:8080/feed/matchbeam"
   @provider_title "Matchbeam"
 
-  def call do
+  def call(url \\ @url) do
     provider_id = Common.provider_id_by_title(@provider_title)
-    ForzaAssignment.Utils.Fetch.call(@url)
+    {_, matches} = ForzaAssignment.Utils.Fetch.call(url)
+    matches
     |> Flow.from_enumerable()
     |> Flow.partition()
     |> Flow.each(fn match -> match |> prepare_match_object(provider_id) |> Common.persist end)

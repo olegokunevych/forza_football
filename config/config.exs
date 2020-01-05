@@ -1,8 +1,10 @@
 import Config
 
-config :forza_assignment, ForzaAssignment.Repo,
-  database: "forza_assignment_repo",
-  username: "postgres",
-  password: "",
-  hostname: "postgres",
-  pool_size: 1000
+import_config "#{Mix.env()}.exs"
+
+config :logger,
+  level: :info,
+  backends: [:console],
+  compile_time_purge_matching: [
+    [level_lower_than: :info]
+  ]

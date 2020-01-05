@@ -1,7 +1,10 @@
 defmodule ForzaAssignment.Providers.Common do
   def provider_id_by_title(title) do
-    %ForzaAssignment.Provider{id: provider_id} = ForzaAssignment.Repo.get_by(ForzaAssignment.Provider, title: title)
-    provider_id
+    provider = ForzaAssignment.Repo.get_by(ForzaAssignment.Provider, title: title)
+    case provider do
+      nil -> nil
+      _ -> provider.id
+    end
   end
 
   # function implemented to solve race condition problem

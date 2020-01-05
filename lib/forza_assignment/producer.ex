@@ -55,6 +55,9 @@ defmodule ForzaAssignment.Producer do
   end
 
   defp fetch_events(_demand) do
-    ["Matchbeam", "FastBall"]
+    case Mix.env do
+      :dev -> ["Matchbeam", "FastBall"]
+      :test -> []
+    end
   end
 end
