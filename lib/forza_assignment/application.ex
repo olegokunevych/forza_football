@@ -7,11 +7,11 @@ defmodule ForzaAssignment.Application do
 
   def start(_type, _args) do
     children = [
+      {ForzaAssignment.Repo, []},
       ForzaAssignment.Producer,
       ForzaAssignment.Splitter,
       ForzaAssignment.ConsumerMatchbeam,
       ForzaAssignment.ConsumerFastBall,
-      {ForzaAssignment.Repo, []}
     ]
 
     :ets.new(:last_checked_at, [:set, :named_table, :public, read_concurrency: true,
