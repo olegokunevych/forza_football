@@ -1,15 +1,18 @@
 defmodule ForzaAssignment.Providers.FastBall.Manager do
   alias ForzaAssignment.Providers.Common, as: Common
+  alias ForzaAssignment.Providers.Provider, as: Provider
+  alias ForzaAssignment.Matches.Match, as: Match
+  alias ForzaAssignment.Teams.Team, as: Team
   @url "http://forzaassignment.forzafootball.com:8080/feed/fastball"
   @provider_title "FastBall"
 
   def call(url \\ @url) do
-    provider_id = Common.provider_id_by_title(@provider_title)
+    provider_id = Provider.provider_id_by_title(@provider_title)
     {_, matches} = ForzaAssignment.Utils.Fetch.call(url, query_params())
     matches
     |> Flow.from_enumerable()
     |> Flow.partition()
-    |> Flow.each(fn match -> match |> prepare_match_object(provider_id) |> Common.persist end)
+    |> Flow.each(fn match -> match |> prepare_match_object(provider_id) |> Match.persist end)
     |> Enum.to_list
   end
 
@@ -22,14 +25,14 @@ defmodule ForzaAssignment.Providers.FastBall.Manager do
   end
 
   defp prepare_match_object(match, provider_id) do
-    {:ok, home_team} = Common.find_or_create_team(match["home_team"])
-    {:ok, away_team} = Common.find_or_create_team(match["away_team"])
+    {:ok, home_team} = Team.find_or_create_team(match["home_team"])
+    {:ok, away_team} = Team.find_or_create_team(match["away_team"])
     kickoff_at = Common.kickoff_at(match)
     created_at = Common.created_at(match)
 
     write_last_checked_at()
 
-    %ForzaAssignment.Match{
+    %Match{
       provider_id: provider_id,
       home_team_id: home_team.id,
       away_team_id: away_team.id,
