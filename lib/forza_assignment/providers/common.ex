@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Providers.Common do
+  @moduledoc "Common helpers module"
   def kickoff_at(match) do
     {:ok, kickoff_at, 0} = DateTime.from_iso8601(match["kickoff_at"])
     kickoff_at

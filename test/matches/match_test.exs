@@ -19,7 +19,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Repo.insert
 
       {:ok, kickoff_at, 0} = DateTime.from_iso8601("2020-01-26T11:00:00Z")
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         provider_id: provider.id,
@@ -46,7 +46,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Repo.insert
 
       {:ok, kickoff_at, 0} = DateTime.from_iso8601("2020-01-26T11:00:00Z")
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         provider_id: provider.id,
@@ -80,7 +80,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Repo.insert
 
       {:ok, kickoff_at, 0} = DateTime.from_iso8601("2020-01-26T11:00:00Z")
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         home_team_id: home_team.id,
@@ -103,7 +103,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Repo.insert
 
       {:ok, kickoff_at, 0} = DateTime.from_iso8601("2020-01-26T11:00:00Z")
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         provider_id: provider.id,
@@ -126,7 +126,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Repo.insert
 
       {:ok, kickoff_at, 0} = DateTime.from_iso8601("2020-01-26T11:00:00Z")
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         provider_id: provider.id,
@@ -152,7 +152,7 @@ defmodule ForzaAssignment.Matches.Match.MatchTests do
       |> ForzaAssignment.Teams.Team.changeset()
       |> ForzaAssignment.Repo.insert
 
-      {:ok, created_at} = DateTime.from_unix(1578246528)
+      {:ok, created_at} = DateTime.from_unix(1_578_246_528)
 
       match_object = %Match{
         provider_id: provider.id,

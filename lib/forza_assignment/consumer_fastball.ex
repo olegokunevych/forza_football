@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.ConsumerFastBall do
+  @moduledoc "Fastball Events Consumer"
   use GenStage
 
   @min_demand 0
@@ -42,7 +43,7 @@ defmodule ForzaAssignment.ConsumerFastBall do
 
     ForzaAssignment.Providers.FastBall.Manager.call
 
-    :timer.sleep(30000)
+    :timer.sleep(30_000)
 
     {:noreply, [], state}
   end

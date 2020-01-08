@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Providers.Provider do
+  @moduledoc "Provider persisting"
   use Ecto.Schema
 
   schema "providers" do

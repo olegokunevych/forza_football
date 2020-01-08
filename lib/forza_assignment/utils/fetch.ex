@@ -1,4 +1,6 @@
 defmodule ForzaAssignment.Utils.Fetch do
+  @moduledoc "Poison HTTP lib wrapper"
+
   require Logger
   def call(url, params \\ %{}) do
     case HTTPoison.get(url, [], params: params) do

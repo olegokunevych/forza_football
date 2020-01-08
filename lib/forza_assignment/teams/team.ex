@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Teams.Team do
+  @moduledoc "Team persisting"
   use Ecto.Schema
 
   schema "teams" do

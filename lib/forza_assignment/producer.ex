@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Producer do
+  @moduledoc "Events Producer"
   use GenStage
 
   def start_link(_) do

@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Providers.FastBall.Manager do
+  @moduledoc "Fastball Manager module for fetch, perform, persist matches info"
   alias ForzaAssignment.Providers.Common, as: Common
   alias ForzaAssignment.Providers.Provider, as: Provider
   alias ForzaAssignment.Matches.Match, as: Match

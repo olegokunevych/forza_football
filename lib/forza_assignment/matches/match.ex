@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Matches.Match do
+  @moduledoc false
   use Ecto.Schema
 
   schema "matches" do

@@ -1,4 +1,5 @@
 defmodule ForzaAssignment.Splitter do
+  @moduledoc "Events splitter per provider"
   use GenStage
 
   def start_link(_) do
