@@ -1,7 +1,8 @@
-defmodule ForzaAssignment.Providers.Provider.ProviderTests do
+defmodule ForzaAssignment.Providers.Providers.ProvidersTests do
   # use ExUnit.Case
   use ForzaAssignment.RepoCase
 
+  alias ForzaAssignment.Providers.Providers
   alias ForzaAssignment.Providers.Provider
 
   describe "provider_id_by_title" do
@@ -11,13 +12,13 @@ defmodule ForzaAssignment.Providers.Provider.ProviderTests do
       |> Provider.changeset()
       |> ForzaAssignment.Repo.insert
 
-      assert provider_id = Provider.provider_id_by_title(provider_title)
+      assert provider_id = Providers.provider_id_by_title(provider_title)
     end
 
     test "it returns nil when provider not found" do
       provider_title = "NonExistingProvider"
 
-      assert is_nil(Provider.provider_id_by_title(provider_title))
+      assert is_nil(Providers.provider_id_by_title(provider_title))
     end
   end
 

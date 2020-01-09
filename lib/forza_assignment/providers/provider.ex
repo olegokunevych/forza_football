@@ -12,12 +12,4 @@ defmodule ForzaAssignment.Providers.Provider do
     |> Ecto.Changeset.validate_required([:title])
     |> Ecto.Changeset.unique_constraint(:title)
   end
-
-  def provider_id_by_title(title) do
-    provider = ForzaAssignment.Repo.get_by(ForzaAssignment.Providers.Provider, title: title)
-    case provider do
-      nil -> nil
-      _ -> provider.id
-    end
-  end
 end

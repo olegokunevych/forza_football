@@ -17,8 +17,4 @@ defmodule ForzaAssignment.Matches.Match do
     |> Ecto.Changeset.unique_constraint(:id, name: :matches_provider_id_home_team_id_away_team_id_kickoff_at_index)
   end
 
-  def persist(match_object) do
-    ForzaAssignment.Matches.Match.changeset(match_object, %{})
-    |> ForzaAssignment.Repo.insert
-  end
 end

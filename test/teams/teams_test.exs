@@ -1,8 +1,9 @@
-defmodule ForzaAssignment.Teams.Team.TeamTests do
+defmodule ForzaAssignment.Teams.Teams.TeamsTests do
   # use ExUnit.Case
   use ForzaAssignment.RepoCase
 
   alias ForzaAssignment.Teams.Team
+  alias ForzaAssignment.Teams.Teams
 
   describe "find_or_create_team(title)" do
     test "it returns team if team is already exist" do
@@ -11,7 +12,7 @@ defmodule ForzaAssignment.Teams.Team.TeamTests do
       |> Team.changeset()
       |> ForzaAssignment.Repo.insert
 
-      {:ok, team} = Team.find_or_create_team(team_title)
+      {:ok, team} = Teams.find_or_create_team(team_title)
 
       assert existing_team = team
     end
@@ -19,7 +20,7 @@ defmodule ForzaAssignment.Teams.Team.TeamTests do
     test "it returns a new team if team is non existing" do
       team_title = "TestTeam"
 
-      assert {:ok, %Team{title: team_title}} = Team.find_or_create_team(team_title)
+      assert {:ok, %Team{title: team_title}} = Teams.find_or_create_team(team_title)
     end
   end
 end
